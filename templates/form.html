@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 360px; 
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 16px; 
+        }
+
+        form {
+            margin-bottom: 16px; 
+        }
+
+        label {
+            color: #666666;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 6px; /* Slightly reduced margin for better spacing */
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+            margin-bottom: 12px; /* Slightly reduced margin for better spacing */
+        }
+
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Added styling for the response message */
+        #response-message {
+            padding: 10px;
+            margin-top: 16px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculate Age in Days</h2>
+        <form id="birthdate-form">
+            <label for="month">Month:</label>
+            <input type="number" id="month" name="month" required>
+            
+            <label for="day">Day:</label>
+            <input type="number" id="day" name="day" required>
+            
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" required>
+            
+            <button type="button" id="calculate-button">Calculate</button>
+        </form>
+        
+        <div id="response-message" style="display: none;"></div>
+    </div>
+
+    <script>
+        const calculateButton = document.getElementById('calculate-button');
+        const responseMessage = document.getElementById('response-message'); 
+
+        calculateButton.addEventListener('click', async () => {
+            const monthInput = document.getElementById('month');
+            const dayInput = document.getElementById('day');
+            const yearInput = document.getElementById('year');
+
+            const data = {
+                value1: parseInt(monthInput.value),
+                value2: parseInt(dayInput.value),
+                value3: parseInt(yearInput.value)
+            };
+
+            try {
+                const response = await fetch('/calculate/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log(result);
+
+                    // Display the response message on the webpage
+                    responseMessage.textContent = result.message;
+                    responseMessage.style.display = 'block';
+                } else {
+                    console.error('Error:', response.statusText);
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        });
+    </script>
+
+</body>
+</html>
