@@ -31,5 +31,4 @@ async def calculate_values(data: RequestData):
 async def show_form(request: Request):
     return templates.TemplateResponse("form.html", {"request": request})
 
-
 # uvicorn main:app --reload
