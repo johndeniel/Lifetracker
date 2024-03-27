@@ -1,11 +1,20 @@
 # Lifetracker
 
-Simple yet powerful web application that computes your age in days. This application has been Dockerized for effortless deployment, with the Docker image readily available on [Docker Hub](https://hub.docker.com/r/johndeniel/lifetracker/tags). 
+Lifetracker is a web application built with FastAPI that computes your age in days. It provides an intuitive interface for users to input their birth date and instantly see how many days they have been alive. Lifetracker has been Dockerized for effortless deployment, and its Docker image is readily available on [Docker Hub](https://hub.docker.com/r/johndeniel/lifetracker/tags). 
 
 ```bash
-docker run -d -it --name lifetracker -p 3000:3000 johndeniel/lifetracker:build-v1.042
+docker run -d -it --name lifetracker -p 7860:7860 johndeniel/lifetracker:build-v1.052
 ```
 
-<br>
+## Features
 
-Seamlessly enables integration for accessing the live instance of Ducker, hosted on the [Hugging Face Platform](https://huggingface.co/spaces/johndeniel/Lifetracker). 
+- **FastAPI Integration**: Lifetracker utilizes FastAPI, a modern Python web framework known for its speed and efficiency, to power its backend functionality.
+
+- **Automated Dockerization**: Lifetracker includes a GitHub Action workflow for Dockerizing the FastAPI application, streamlining the deployment process with automated containerization.
+
+- **Hugging Face Platform Integration**: Lifetracker seamlessly integrates with the Hugging Face Platform, offering access to the live instance on [Hugging Face Spaces](https://huggingface.co/spaces/johndeniel/Lifetracker).
+
+
+---
+
+Lifetracker demonstrates the utilization of cutting-edge technologies like FastAPI, Docker, GitHub Actions, and the Hugging Face Platform, offering developers an efficient development experience.
