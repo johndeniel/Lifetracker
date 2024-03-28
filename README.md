@@ -5,7 +5,7 @@ Lifetracker is a web application built with FastAPI. It provides an intuitive in
 To run Lifetracker using Docker, execute this command in your terminal:
 
 ```bash
-docker run -d -it --name lifetracker -p 7860:7860 johndeniel/lifetracker:build-v1.052
+docker run -d -it --name lifetracker -p 7860:7860 johndeniel/lifetracker:build-v1.064
 ```
 
 ## Features

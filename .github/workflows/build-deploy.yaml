@@ -17,7 +17,7 @@ jobs:
         run: |
           docker build \
             --file Dockerfile \
-            --tag ${{ secrets.DOCKER_HUB_USERNAME }}/lifetracker:build-v1.052 \
+            --tag ${{ secrets.DOCKER_HUB_USERNAME }}/lifetracker:build-v1.064 \
             .
         continue-on-error: false  # Stop the workflow if building the Docker image fails
         timeout-minutes: 10  # Set a timeout for the build process
@@ -31,5 +31,5 @@ jobs:
 
       - name: Push Docker image  # Step to push Docker image to Docker Hub
         run: |
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/lifetracker:build-v1.052
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/lifetracker:build-v1.064
         continue-on-error: false  # Stop the workflow if pushing the Docker image fails

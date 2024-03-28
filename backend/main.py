@@ -13,8 +13,8 @@ client = Jinja2Templates(directory="frontend")
 
 class RequestData(BaseModel):
     """
-    Pydantic model defining the structure of the request data expected 
-    by the API endpoint. This model contains three attributes representing 
+    Pydantic model defining the structure of the request data expected
+    by the API endpoint. This model contains three attributes representing
     the components of a date: month, day, and year.
 
     Attributes:
@@ -22,38 +22,46 @@ class RequestData(BaseModel):
         day (int): An integer representing the day component of the date.
         year (int): An integer representing the year component of the date.
     """
-    month: int 
-    day: int 
-    year: int 
+
+    month: int
+    day: int
+    year: int
 
 
 class ResponseData(BaseModel):
     """
-    Pydantic model defining the structure of the response data returned 
+    Pydantic model defining the structure of the response data returned
     by the API endpoint. This model contains a single attribute:
-    
+
     Attributes:
         message (str): A string representing the message to be included
                        in the API response.
     """
-    message: str  
+
+    message: str
 
 
 def get_current_date():
     """
     Dependency function to get the current date.
+
+    Returns:
+        date: The current date.
     """
     return date.today()
 
 
 @app.post("/calculate/", response_model=ResponseData)
-async def calculate_age(data: RequestData, current_date: date = Depends(get_current_date)):
+async def calculate_age(
+    data: RequestData, current_date: date = Depends(get_current_date)
+):
     """
     Endpoint to calculate the number of days passed since the provided birth date.
-    
+
     Args:
         data (RequestData): The request data containing the birth date.
-        current_date (date): The current date.
+        current_date (date, optional): The current date. It is retrieved using the
+                                        dependency function get_current_date.
 
     Returns:
         dict: A dictionary containing the number of days passed since the birth date
@@ -68,7 +76,7 @@ async def calculate_age(data: RequestData, current_date: date = Depends(get_curr
 
     # Calculate days passed since birth
     days_passed = (current_date - birth_date.date()).days
-    
+
     # Return the result
     return {"message": f"You are {days_passed} days old"}
 
@@ -77,7 +85,7 @@ async def calculate_age(data: RequestData, current_date: date = Depends(get_curr
 async def render_form(request: Request):
     """
     Endpoint to render the HTML form for providing the birth date.
-    
+
     Args:
         request (Request): The incoming request.
 

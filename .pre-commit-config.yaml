@@ -1,0 +1,29 @@
+# List of repositories and associated hooks configurations
+repos:
+    # Pre-commit hooks repository with specific revision
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+        # Hook to check YAML syntax
+      - id: check-yaml
+        # Hook to remove trailing whitespaces
+      - id: trailing-whitespace
+
+    # Black formatter repository with specific revision
+  - repo: https://github.com/psf/black
+    rev: 22.10.0
+    hooks:
+        # Hook to format code using Black
+      - id: black
+
+    # Local repository for custom commands
+  - repo: local
+    hooks:
+        # Custom hook to run pytest on backend directory
+      - id: custom-command
+        name: pytest
+        entry: pytest backend/
+        language: system
+        types: [python]
+        pass_filenames: false
+        always_run: true
