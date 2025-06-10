@@ -4,143 +4,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lifetracker</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Reset default margin and padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000000;
-        }
-
-        /* Main container styles */
-        .container {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-image: linear-gradient(45deg, #ffffff 0%, #f0f0f0 100%);
-        }
-
-        /* Application title styles */
-        .container>div {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        /* Form styles */
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Input field styles */
-        label {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        input[type="number"] {
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        /* Button styles */
-        #calculate-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #calculate-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Response message styles */
-        #response-message {
-            padding: 10px;
-            margin-top: 16px;
-            background-color: #f0f0f0;
-            border-radius: 4px;
-            text-align: center;
-            font-size: 14px;
-            color: #333333;
-        }
-
-
-        /* Responsive styles */
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-
-            input[type="number"] {
-                font-size: 14px;
+    <title>Lifetracker - Calculate Your Life Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.4s ease-out',
+                        'pulse-soft': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
             }
         }
-    </style>
+    </script>
 </head>
 
-<body>
-    <!-- Main container -->
-    <div class="container">
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+    
+    <!-- Main Container -->
+    <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-md">
+            <!-- Header Section -->
+            <div class="text-center mb-8 animate-fade-in">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">Lifetracker</h1>
+                <p class="text-gray-300 text-sm md:text-base">Discover your life's timeline and milestones</p>
+            </div>
 
-        <!-- Application title -->
-        <div>Lifetracker</div>
+            <!-- Main Card -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-6 md:p-8 animate-slide-up">
+                <!-- Info Section -->
+                <div class="mb-6 p-4 bg-blue-50/10 rounded-xl border border-blue-200/20">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold text-sm mb-1">What is Lifetracker?</h3>
+                            <p class="text-gray-300 text-xs leading-relaxed">
+                                Enter your birthdate to calculate your age, days lived, and other fascinating life statistics. 
+                                Track your journey through time!
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Form for input -->
-        <form>
-            <!-- Input fields for date -->
-            <label for="month">Month:</label>
-            <input type="number" id="month" name="month" required>
+                <!-- Form Section -->
+                <form class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Month Input -->
+                        <div>
+                            <label for="month" class="block text-sm font-medium text-gray-200 mb-2">
+                                Month
+                            </label>
+                            <input 
+                                type="number" 
+                                id="month" 
+                                name="month" 
+                                min="1" 
+                                max="12" 
+                                placeholder="MM"
+                                required
+                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 backdrop-blur-sm"
+                            >
+                        </div>
 
-            <label for="day">Day:</label>
-            <input type="number" id="day" name="day" required>
+                        <!-- Day Input -->
+                        <div>
+                            <label for="day" class="block text-sm font-medium text-gray-200 mb-2">
+                                Day
+                            </label>
+                            <input 
+                                type="number" 
+                                id="day" 
+                                name="day" 
+                                min="1" 
+                                max="31" 
+                                placeholder="DD"
+                                required
+                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 backdrop-blur-sm"
+                            >
+                        </div>
+                    </div>
 
-            <label for="year">Year:</label>
-            <input type="number" id="year" name="year" required>
+                    <!-- Year Input -->
+                    <div>
+                        <label for="year" class="block text-sm font-medium text-gray-200 mb-2">
+                            Year
+                        </label>
+                        <input 
+                            type="number" 
+                            id="year" 
+                            name="year" 
+                            min="1900" 
+                            max="2025" 
+                            placeholder="YYYY"
+                            required
+                            class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 backdrop-blur-sm"
+                        >
+                    </div>
 
-            <!-- Button to trigger calculation -->
-            <button type="button" id="calculate-button">Calculate</button>
-        </form>
+                    <!-- Calculate Button -->
+                    <button 
+                        type="button" 
+                        id="calculate-button"
+                        class="w-full mt-6 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-lg shadow-lg transform transition-all duration-200 hover:scale-105 hover:shadow-xl focus:ring-4 focus:ring-blue-500/50 active:scale-95"
+                    >
+                        <span class="flex items-center justify-center space-x-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>Calculate Life Stats</span>
+                        </span>
+                    </button>
+                </form>
 
-        <!-- Container for displaying response message -->
-        <div id="response-message" style="display: none;"></div>
+                <!-- Response Message -->
+                <div id="response-message" class="hidden mt-6 p-4 bg-green-50/10 border border-green-200/20 rounded-xl animate-fade-in">
+                    <div class="flex items-start space-x-3">
+                        <div class="flex-shrink-0">
+                            <svg class="w-5 h-5 text-green-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-green-400 font-semibold text-sm mb-1">Your Life Statistics</h4>
+                            <p id="message-content" class="text-gray-200 text-sm leading-relaxed"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading-state" class="hidden mt-6 p-4 bg-blue-50/10 border border-blue-200/20 rounded-xl">
+                    <div class="flex items-center space-x-3">
+                        <div class="animate-spin">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                            </svg>
+                        </div>
+                        <p class="text-blue-400 text-sm">Calculating your life journey...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-8 text-gray-400 text-xs">
+                <p>Enter your birthdate above to discover fascinating insights about your life timeline</p>
+            </div>
+        </div>
     </div>
 
     <script>
         const calculateButton = document.getElementById('calculate-button');
         const responseMessage = document.getElementById('response-message');
-
+        const messageContent = document.getElementById('message-content');
+        const loadingState = document.getElementById('loading-state');
         calculateButton.addEventListener('click', async () => {
             const monthInput = document.getElementById('month');
             const dayInput = document.getElementById('day');
             const yearInput = document.getElementById('year');
-
-            const data = {
-                month: parseInt(monthInput.value),
-                day: parseInt(dayInput.value),
-                year: parseInt(yearInput.value)
-            };
-
+            // Validate inputs
+            if (!monthInput.value || !dayInput.value || !yearInput.value) {
+                showError('Please fill in all date fields');
+                return;
+            }
+            const month = parseInt(monthInput.value);
+            const day = parseInt(dayInput.value);
+            const year = parseInt(yearInput.value);
+            // Basic validation
+            if (month < 1 || month > 12) {
+                showError('Please enter a valid month (1-12)');
+                return;
+            }
+            if (day < 1 || day > 31) {
+                showError('Please enter a valid day (1-31)');
+                return;
+            }
+            if (year < 1900 || year > new Date().getFullYear()) {
+                showError('Please enter a valid year');
+                return;
+            }
+            const data = { month, day, year };
+            // Show loading state
+            responseMessage.classList.add('hidden');
+            loadingState.classList.remove('hidden');
+            calculateButton.disabled = true;
+            calculateButton.innerHTML = '<span class="animate-pulse">Calculating...</span>';
             try {
                 const response = await fetch('/calculate/', {
                     method: 'POST',
@@ -149,19 +218,66 @@
                     },
                     body: JSON.stringify(data)
                 });
-
                 if (response.ok) {
                     const result = await response.json();
                     console.log(result);
-
-                    // Display the response message on the webpage
-                    responseMessage.textContent = result.message;
-                    responseMessage.style.display = 'block';
+                    // Display the response message
+                    messageContent.textContent = result.message;
+                    loadingState.classList.add('hidden');
+                    responseMessage.classList.remove('hidden');
+                    responseMessage.classList.remove('bg-red-50/10', 'border-red-200/20');
+                    responseMessage.classList.add('bg-green-50/10', 'border-green-200/20');
                 } else {
-                    console.error('Error:', response.statusText);
+                    throw new Error('Server error');
                 }
             } catch (error) {
                 console.error('An error occurred:', error);
+                showError('An error occurred while calculating. Please try again.');
+            } finally {
+                // Reset button state
+                calculateButton.disabled = false;
+                calculateButton.innerHTML = `
+                    <span class="flex items-center justify-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                        <span>Calculate Life Stats</span>
+                    </span>
+                `;
+                loadingState.classList.add('hidden');
+            }
+        });
+        function showError(message) {
+            messageContent.textContent = message;
+            loadingState.classList.add('hidden');
+            responseMessage.classList.remove('hidden', 'bg-green-50/10', 'border-green-200/20');
+            responseMessage.classList.add('bg-red-50/10', 'border-red-200/20');
+            
+            // Change icon to error icon
+            const icon = responseMessage.querySelector('svg');
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
+            icon.classList.remove('text-green-400');
+            icon.classList.add('text-red-400');
+            
+            const title = responseMessage.querySelector('h4');
+            title.textContent = 'Error';
+            title.classList.remove('text-green-400');
+            title.classList.add('text-red-400');
+        }
+        // Add input validation and formatting
+        document.getElementById('month').addEventListener('input', function(e) {
+            if (e.target.value.length > 2) {
+                e.target.value = e.target.value.slice(0, 2);
+            }
+        });
+        document.getElementById('day').addEventListener('input', function(e) {
+            if (e.target.value.length > 2) {
+                e.target.value = e.target.value.slice(0, 2);
+            }
+        });
+        document.getElementById('year').addEventListener('input', function(e) {
+            if (e.target.value.length > 4) {
+                e.target.value = e.target.value.slice(0, 4);
             }
         });
     </script>
